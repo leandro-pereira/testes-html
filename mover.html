@@ -1,20 +1,17 @@
 <html>
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
     <script>
-        window.onload = function () {
-            var mykeyup = function (event) {
-                nomeCompleto.innerHTML = nome.value + ' ' + sobrenome.value
-                var key = event.keyCode
-                evento.innerHTML = 'evento: ' + key
-            }
-            var square = document.getElementById('quadrado');
+        $(document).ready(function () {
+            var square = $('#quadrado');
             var passo = 20
 
-            document.onkeydown = function (event) {
+            $(document).keydown(function (event) {
                 var keyCode = event.keyCode;
-                var left = parseInt((square.style.left || '0px').replace('px', ""))
-                var top = parseInt((square.style.top || '0px').replace('px', ""))
+                var left = parseInt((square.css('left') || '0px').replace('px', ""))
+                var top = parseInt((square.css('top') || '0px').replace('px', ""))
 
                 switch (keyCode) {
                     case 37: //left
@@ -38,7 +35,7 @@
 
                 square.style.left = left + 'px'
                 square.style.top = top + 'px'
-            }
+            });
 
             var goDown = function (box) {
                 var left = parseInt((box.style.left || '0px').replace('px', ""))
@@ -83,7 +80,7 @@
                 }
             }, 100);
 
-        }
+        });
     </script>
 </head>
 
