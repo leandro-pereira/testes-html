@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+            var nome = document.getElementById('nome');
+            var sobrenome = document.getElementById('sobrenome');
+            var nomeCompleto = document.getElementById('nome-completo');
+
+            var evento = document.getElementById('evento');
+
+            var mykeyup = function (event) {
+                nomeCompleto.innerHTML = nome.value + ' ' + sobrenome.value
+                var key=event.keyCode
+                evento.innerHTML = 'evento: ' + key
+            }
+            nome.onkeydown = mykeyup
+            nome.onkeyup = mykeyup
+
+            sobrenome.onkeydown = mykeyup
+            sobrenome.onkeyup = mykeyup
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <label for="nome">
+                nome:<br/>
+                <input type="text" id="nome">
+            </label>
+        <br/>
+        <label for="sobrenome">
+                sobrenome:<br/>
+                <input type="text" id="sobrenome">
+            </label>
+
+    </div>
+
+    <div id="nome-completo">
+    </div>
+    <div id="evento">
+    </div>
+</body>
+
+</html>

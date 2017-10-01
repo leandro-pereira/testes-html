@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+            var mykeyup = function (event) {
+                nomeCompleto.innerHTML = nome.value + ' ' + sobrenome.value
+                var key = event.keyCode
+                evento.innerHTML = 'evento: ' + key
+            }
+            var square = document.getElementById('quadrado');
+            var passo = 20
+
+            document.onkeydown = function (event) {
+                var keyCode = event.keyCode;
+                var left = parseInt((square.style.left || '0px').replace('px', ""))
+                var top = parseInt((square.style.top || '0px').replace('px', ""))
+
+                switch (keyCode) {
+                    case 37: //left
+                        left = left - passo
+                        break;
+
+                    case 39: //right
+                        left = left + passo
+                        break;
+                    case 38: //top
+                        top -= passo
+                        break;
+                    case 40: //bottom
+                        top += passo
+                        break;
+                }
+
+                if (left < 0) {
+                    left = 0
+                }
+
+                square.style.left = left + 'px'
+                square.style.top = top + 'px'
+            }
+
+            var goDown = function (box) {
+                var left = parseInt((box.style.left || '0px').replace('px', ""))
+                var top = parseInt((box.style.top || '0px').replace('px', ""))
+
+                top += box.increment;
+
+                box.style.left = left + 'px'
+                box.style.top = top + 'px'
+
+                if (top >= 600) {
+                    return null;
+                }
+
+                return box;
+            }
+
+            var createAndAddBox = function () {
+                var box = document.createElement('div');
+                var leftRandom = parseInt(Math.random() * 500);
+                var topRandom = parseInt(Math.random() * 300);
+                var incrementRandom = parseInt(Math.random() * 20) + 3;
+                box.setAttribute('style', 'position:absolute;border:2px solid red;top: ' + topRandom + 'px;left: ' + leftRandom + 'px;width:10px;height:10px;background-color:white;')
+                box.increment = incrementRandom;
+                document.body.appendChild(box);
+                return box;
+            }
+
+            var boxes = [];
+            for (var i = 0; i < 5; i++) {
+                boxes.push(createAndAddBox())
+            }
+
+            var interval = setInterval(function () {
+                for (var i = 0; i < boxes.length; i++) {
+                    var box = goDown(boxes[i]);
+
+                    if (box == null) {
+                        document.body.removeChild(boxes[i])
+                        boxes[i] = createAndAddBox();
+                    }
+                }
+            }, 100);
+
+        }
+    </script>
+</head>
+
+<body style="background-color: black;">
+    <div id="quadrado" style="position:absolute;top: 0px;left: 0px;width:100px;height:100px;background-color:white;">
+    </div>
+</body>
+
+</html>
