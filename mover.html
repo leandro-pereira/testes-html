@@ -58,14 +58,19 @@
                 var leftRandom = parseInt(Math.random() * 500);
                 var topRandom = parseInt(Math.random() * 300);
                 var incrementRandom = parseInt(Math.random() * 20) + 3;
-                box.setAttribute('style', 'position:absolute;border:2px solid red;top: ' + topRandom + 'px;left: ' + leftRandom + 'px;width:10px;height:10px;background-color:white;')
+                var size = 30;
+                var redRandom = parseInt(Math.random() * 255);
+                var greenRandom = parseInt(Math.random() * 255);
+                var blueRandom = parseInt(Math.random() * 255);
+                var rgbRandom = 'rgb(' + redRandom + ', ' + greenRandom + ', ' + blueRandom + ')'
+                box.setAttribute('style', 'position:absolute;border:2px solid ' + rgbRandom + ';border-radius:' + size + 'px;top: ' + topRandom + 'px;left: ' + leftRandom + 'px;width:' + size + 'px;height:' + size + 'px;background-color:' + rgbRandom + ';')
                 box.increment = incrementRandom;
                 document.body.appendChild(box);
                 return box;
             }
 
             var boxes = [];
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 50; i++) {
                 boxes.push(createAndAddBox())
             }
 
